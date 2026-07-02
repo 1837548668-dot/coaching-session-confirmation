@@ -1,5 +1,12 @@
-const CACHE_NAME = "coaching-confirmation-v1";
-const ASSETS = ["./", "./index.html", "./styles.css", "./config.js", "./app.js", "./icon.svg"];
+const CACHE_NAME = "ai-planet-coaching-confirmation-v2";
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./styles.css",
+  "./config.js",
+  "./app.js",
+  "./assets/ai-planet-logo.jpg",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));

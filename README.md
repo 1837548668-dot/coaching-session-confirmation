@@ -1,4 +1,4 @@
-# 客户辅导服务 · 会前确认单
+# AI星球 · 客户辅导服务会前确认单
 
 一个支持手机、平板和电脑的公开网页确认单，包含：
 
@@ -10,6 +10,7 @@
 - 本设备最近 20 条记录留存
 - 可选的团队后台 JSON 同步接口
 - PWA 离线缓存
+- AI星球品牌 Logo
 
 ## 修改品牌
 
@@ -17,7 +18,8 @@
 
 ```js
 window.APP_CONFIG = {
-  brandName: "你的品牌名称",
+  brandName: "AI星球",
+  logoPath: "./assets/ai-planet-logo.jpg",
   submissionEndpoint: "",
 };
 ```

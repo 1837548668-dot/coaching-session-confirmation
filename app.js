@@ -2,7 +2,8 @@
   "use strict";
 
   const config = {
-    brandName: "客户服务中心",
+    brandName: "AI星球",
+    logoPath: "./assets/ai-planet-logo.jpg",
     submissionEndpoint: "",
     ...(window.APP_CONFIG || {}),
   };
@@ -229,19 +230,14 @@
     const formData = new FormData(form);
     const submittedAt = new Date().toISOString();
     const record = {
-      version: 1,
+      version: 2,
       recordId: createRecordId(),
       brandName: config.brandName,
       clientName: formData.get("clientName").trim(),
       contact: formData.get("contact").trim(),
-      company: formData.get("company").trim(),
-      role: formData.get("role").trim(),
       sessionAt: new Date(formData.get("sessionAt")).toISOString(),
       sessionMode: formData.get("sessionMode"),
       coreIssue: formData.get("coreIssue").trim(),
-      attempts: formData.get("attempts").trim(),
-      desiredOutcome: formData.get("desiredOutcome").trim(),
-      background: formData.get("background").trim(),
       truthConfirmed: formData.get("truthConfirmed") === "on",
       serviceConfirmed: formData.get("serviceConfirmed") === "on",
       signature: signatureDataUrl(),
@@ -392,9 +388,9 @@
     ctx.stroke();
 
     const rows = [
-      ["客户姓名", record.clientName, "公司 / 品牌", record.company || "—"],
+      ["客户姓名", record.clientName, "联系电话 / 微信", record.contact],
       ["预约时间", formatDateTime(record.sessionAt), "辅导方式", record.sessionMode],
-      ["提交时间", formatDateTime(record.submittedAt), "客户职位", record.role || "—"],
+      ["提交时间", formatDateTime(record.submittedAt), "记录状态", "本人已签署"],
     ];
 
     rows.forEach((row, index) => {
@@ -428,13 +424,16 @@
     ctx.lineTo(620, 1383);
     ctx.stroke();
 
+    const brandImage = await loadImage(config.logoPath);
+    ctx.drawImage(brandImage, 966, 1168, 150, 150);
+
     ctx.textAlign = "right";
     ctx.fillStyle = "#102c3b";
     ctx.font = '700 32px "Microsoft YaHei", sans-serif';
-    ctx.fillText(record.brandName, 1146, 1280);
+    ctx.fillText(record.brandName, 1146, 1354);
     ctx.fillStyle = "#899294";
     ctx.font = '400 20px "Microsoft YaHei", sans-serif';
-    ctx.fillText("服务记录专用", 1146, 1320);
+    ctx.fillText("服务记录专用", 1146, 1386);
     ctx.textAlign = "left";
 
     roundedRect(ctx, 94, 1450, 1052, 140, 16, "#102c3b");

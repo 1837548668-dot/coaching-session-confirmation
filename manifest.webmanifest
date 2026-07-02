@@ -1,6 +1,6 @@
 {
-  "name": "客户辅导服务 · 会前确认单",
-  "short_name": "辅导确认单",
+  "name": "AI星球 · 客户辅导服务会前确认单",
+  "short_name": "AI星球确认单",
   "description": "记录客户辅导目标、重点问题与电子手写签名。",
   "start_url": "./",
   "display": "standalone",
@@ -8,9 +8,9 @@
   "theme_color": "#102c3b",
   "icons": [
     {
-      "src": "./icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "./assets/ai-planet-logo.jpg",
+      "sizes": "1254x1254",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ]

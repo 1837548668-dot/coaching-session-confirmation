@@ -10,7 +10,8 @@
     >
     <title>客户辅导服务 · 会前确认单</title>
     <link rel="manifest" href="./manifest.webmanifest">
-    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="icon" href="./assets/ai-planet-logo.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="./assets/ai-planet-logo.jpg">
     <link rel="stylesheet" href="./styles.css">
     <script src="./config.js"></script>
     <script src="./app.js" defer></script>
@@ -21,10 +22,10 @@
 
     <header class="topbar">
       <a class="brand" href="./" aria-label="返回确认单首页">
-        <span class="brand-mark">I</span>
+        <img class="brand-logo" src="./assets/ai-planet-logo.jpg" alt="AI星球 Logo">
         <span>
-          <strong data-brand>客户服务中心</strong>
-          <small>CLIENT SUCCESS</small>
+          <strong data-brand>AI星球</strong>
+          <small>AI PLANET · CLIENT SUCCESS</small>
         </span>
       </a>
       <div class="secure-label">
@@ -35,7 +36,7 @@
 
     <main>
       <section class="hero">
-        <div class="eyebrow">PRE-SESSION BRIEF</div>
+        <div class="eyebrow">AI星球 · PRE-SESSION BRIEF</div>
         <h1>客户辅导服务<br><em>会前确认单</em></h1>
         <p>
           请在辅导开始前用 3–5 分钟完成。您的回答将帮助顾问提前理解现状，
@@ -84,26 +85,6 @@
               >
             </label>
             <label class="field">
-              <span>公司 / 品牌</span>
-              <input
-                name="company"
-                type="text"
-                autocomplete="organization"
-                maxlength="60"
-                placeholder="选填"
-              >
-            </label>
-            <label class="field">
-              <span>您的职位</span>
-              <input
-                name="role"
-                type="text"
-                autocomplete="organization-title"
-                maxlength="40"
-                placeholder="选填"
-              >
-            </label>
-            <label class="field">
               <span>预约辅导时间 <b>*</b></span>
               <input name="sessionAt" type="datetime-local" required>
             </label>
@@ -142,39 +123,6 @@
               <small class="counter" data-for="coreIssue">0 / 800</small>
             </label>
 
-            <label class="field">
-              <span>您已经尝试过哪些方法？结果如何？</span>
-              <textarea
-                name="attempts"
-                rows="4"
-                maxlength="600"
-                placeholder="选填。可以写已经做过的动作、遇到的阻力或得到的反馈……"
-              ></textarea>
-              <small class="counter" data-for="attempts">0 / 600</small>
-            </label>
-
-            <label class="field">
-              <span>本次辅导结束时，您希望带走什么成果？ <b>*</b></span>
-              <textarea
-                name="desiredOutcome"
-                rows="4"
-                maxlength="600"
-                placeholder="例如：一套清晰方案、一个优先级判断、下一步行动清单……"
-                required
-              ></textarea>
-              <small class="counter" data-for="desiredOutcome">0 / 600</small>
-            </label>
-
-            <label class="field">
-              <span>还有哪些背景信息需要顾问提前了解？</span>
-              <textarea
-                name="background"
-                rows="4"
-                maxlength="600"
-                placeholder="选填。涉及隐私或商业机密的内容，请仅填写本次辅导必要的信息。"
-              ></textarea>
-              <small class="counter" data-for="background">0 / 600</small>
-            </label>
           </div>
         </section>
 
@@ -246,7 +194,7 @@
     </main>
 
     <footer>
-      <p>© <span id="currentYear"></span> <span data-brand>客户服务中心</span></p>
+      <p>© <span id="currentYear"></span> <span data-brand>AI星球</span></p>
       <span>专业 · 真诚 · 长期主义</span>
     </footer>
 
@@ -295,8 +243,11 @@
               <img id="receiptSignature" src="./icon.svg" alt="客户电子签名">
             </div>
             <div class="receipt-brand">
-              <span data-brand>客户服务中心</span>
-              <small>服务记录专用</small>
+              <img src="./assets/ai-planet-logo.jpg" alt="AI星球 Logo">
+              <div>
+                <span data-brand>AI星球</span>
+                <small>服务记录专用</small>
+              </div>
             </div>
           </div>
           <div class="receipt-code">
