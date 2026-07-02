@@ -28,7 +28,7 @@
 
   const sessionInput = form.elements.sessionAt;
   const now = new Date();
-  now.setMinutes(now.getMinutes() - now.getTimezoneOffset() + 60);
+  now.setHours(now.getHours() + 1);
   now.setSeconds(0, 0);
   sessionInput.min = toLocalDateTime(new Date());
   sessionInput.value = toLocalDateTime(now);
@@ -502,7 +502,16 @@
 
   function roundedRect(ctx, x, y, width, height, radius, fill) {
     ctx.beginPath();
-    ctx.roundRect(x, y, width, height, radius);
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
     ctx.fillStyle = fill;
     ctx.fill();
   }

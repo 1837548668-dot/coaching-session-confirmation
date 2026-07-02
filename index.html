@@ -1,17 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#102c3b" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#102c3b">
     <meta
       name="description"
       content="客户辅导服务会前确认单：记录辅导目标、重点问题与电子手写签名。"
-    />
+    >
     <title>客户辅导服务 · 会前确认单</title>
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
     <script src="./config.js"></script>
     <script src="./app.js" defer></script>
   </head>
@@ -36,7 +36,7 @@
     <main>
       <section class="hero">
         <div class="eyebrow">PRE-SESSION BRIEF</div>
-        <h1>客户辅导服务<br /><em>会前确认单</em></h1>
+        <h1>客户辅导服务<br><em>会前确认单</em></h1>
         <p>
           请在辅导开始前用 3–5 分钟完成。您的回答将帮助顾问提前理解现状，
           把本次时间真正用在最重要的问题上。
@@ -70,7 +70,7 @@
                 maxlength="30"
                 placeholder="请输入真实姓名"
                 required
-              />
+              >
             </label>
             <label class="field">
               <span>联系电话 / 微信 <b>*</b></span>
@@ -81,7 +81,7 @@
                 maxlength="50"
                 placeholder="便于顾问与您确认安排"
                 required
-              />
+              >
             </label>
             <label class="field">
               <span>公司 / 品牌</span>
@@ -91,7 +91,7 @@
                 autocomplete="organization"
                 maxlength="60"
                 placeholder="选填"
-              />
+              >
             </label>
             <label class="field">
               <span>您的职位</span>
@@ -101,11 +101,11 @@
                 autocomplete="organization-title"
                 maxlength="40"
                 placeholder="选填"
-              />
+              >
             </label>
             <label class="field">
               <span>预约辅导时间 <b>*</b></span>
-              <input name="sessionAt" type="datetime-local" required />
+              <input name="sessionAt" type="datetime-local" required>
             </label>
             <label class="field">
               <span>辅导方式 <b>*</b></span>
@@ -196,7 +196,7 @@
           </div>
 
           <label class="check-row">
-            <input name="truthConfirmed" type="checkbox" required />
+            <input name="truthConfirmed" type="checkbox" required>
             <span>
               我确认以上内容由本人填写，信息真实、完整，并同意其仅用于本次辅导准备、服务记录与后续复盘。
               <b>*</b>
@@ -204,7 +204,7 @@
           </label>
 
           <label class="check-row">
-            <input name="serviceConfirmed" type="checkbox" required />
+            <input name="serviceConfirmed" type="checkbox" required>
             <span>
               我已阅读上述说明，自愿提交本确认单，并认可电子手写签名作为本人确认本次内容的凭据。
               <b>*</b>
@@ -220,7 +220,7 @@
               </div>
             </div>
             <div class="signature-wrap">
-              <canvas id="signaturePad" aria-label="手写签名区域"></canvas>
+              <canvas id="signaturePad" role="application" aria-label="手写签名区域"></canvas>
               <div id="signatureHint" class="signature-hint">
                 <span>请用手指或鼠标签名</span>
                 <i></i>
@@ -292,7 +292,7 @@
           <div class="receipt-signature">
             <div>
               <small>客户本人签名</small>
-              <img id="receiptSignature" alt="客户电子签名" />
+              <img id="receiptSignature" src="./icon.svg" alt="客户电子签名">
             </div>
             <div class="receipt-brand">
               <span data-brand>客户服务中心</span>
