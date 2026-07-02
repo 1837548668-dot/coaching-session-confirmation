@@ -1,0 +1,17 @@
+{
+  "name": "客户辅导服务 · 会前确认单",
+  "short_name": "辅导确认单",
+  "description": "记录客户辅导目标、重点问题与电子手写签名。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8f5ef",
+  "theme_color": "#102c3b",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

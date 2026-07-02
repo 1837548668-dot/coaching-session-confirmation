@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#102c3b" />
+    <meta
+      name="description"
+      content="客户辅导服务会前确认单：记录辅导目标、重点问题与电子手写签名。"
+    />
+    <title>客户辅导服务 · 会前确认单</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./config.js"></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="返回确认单首页">
+        <span class="brand-mark">I</span>
+        <span>
+          <strong data-brand>客户服务中心</strong>
+          <small>CLIENT SUCCESS</small>
+        </span>
+      </a>
+      <div class="secure-label">
+        <span class="secure-dot"></span>
+        HTTPS 安全页面
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">PRE-SESSION BRIEF</div>
+        <h1>客户辅导服务<br /><em>会前确认单</em></h1>
+        <p>
+          请在辅导开始前用 3–5 分钟完成。您的回答将帮助顾问提前理解现状，
+          把本次时间真正用在最重要的问题上。
+        </p>
+        <div class="hero-meta">
+          <span>预计 3–5 分钟</span>
+          <i></i>
+          <span>支持手写签名</span>
+          <i></i>
+          <span>提交后生成凭证</span>
+        </div>
+      </section>
+
+      <form id="briefForm" class="form-shell">
+        <section class="form-section">
+          <div class="section-heading">
+            <span>01</span>
+            <div>
+              <h2>基本信息</h2>
+              <p>用于确认本次服务对象和联系信息</p>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>您的姓名 <b>*</b></span>
+              <input
+                name="clientName"
+                type="text"
+                autocomplete="name"
+                maxlength="30"
+                placeholder="请输入真实姓名"
+                required
+              />
+            </label>
+            <label class="field">
+              <span>联系电话 / 微信 <b>*</b></span>
+              <input
+                name="contact"
+                type="text"
+                autocomplete="tel"
+                maxlength="50"
+                placeholder="便于顾问与您确认安排"
+                required
+              />
+            </label>
+            <label class="field">
+              <span>公司 / 品牌</span>
+              <input
+                name="company"
+                type="text"
+                autocomplete="organization"
+                maxlength="60"
+                placeholder="选填"
+              />
+            </label>
+            <label class="field">
+              <span>您的职位</span>
+              <input
+                name="role"
+                type="text"
+                autocomplete="organization-title"
+                maxlength="40"
+                placeholder="选填"
+              />
+            </label>
+            <label class="field">
+              <span>预约辅导时间 <b>*</b></span>
+              <input name="sessionAt" type="datetime-local" required />
+            </label>
+            <label class="field">
+              <span>辅导方式 <b>*</b></span>
+              <select name="sessionMode" required>
+                <option value="">请选择</option>
+                <option>线上视频</option>
+                <option>线下面谈</option>
+                <option>电话沟通</option>
+                <option>其他方式</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-heading">
+            <span>02</span>
+            <div>
+              <h2>本次辅导重点</h2>
+              <p>越具体，顾问越能提前做好准备</p>
+            </div>
+          </div>
+
+          <div class="field-stack">
+            <label class="field">
+              <span>本次最希望解决的一个核心问题是什么？ <b>*</b></span>
+              <textarea
+                name="coreIssue"
+                rows="5"
+                maxlength="800"
+                placeholder="请尽量描述具体场景、当前卡点，以及它对您的影响……"
+                required
+              ></textarea>
+              <small class="counter" data-for="coreIssue">0 / 800</small>
+            </label>
+
+            <label class="field">
+              <span>您已经尝试过哪些方法？结果如何？</span>
+              <textarea
+                name="attempts"
+                rows="4"
+                maxlength="600"
+                placeholder="选填。可以写已经做过的动作、遇到的阻力或得到的反馈……"
+              ></textarea>
+              <small class="counter" data-for="attempts">0 / 600</small>
+            </label>
+
+            <label class="field">
+              <span>本次辅导结束时，您希望带走什么成果？ <b>*</b></span>
+              <textarea
+                name="desiredOutcome"
+                rows="4"
+                maxlength="600"
+                placeholder="例如：一套清晰方案、一个优先级判断、下一步行动清单……"
+                required
+              ></textarea>
+              <small class="counter" data-for="desiredOutcome">0 / 600</small>
+            </label>
+
+            <label class="field">
+              <span>还有哪些背景信息需要顾问提前了解？</span>
+              <textarea
+                name="background"
+                rows="4"
+                maxlength="600"
+                placeholder="选填。涉及隐私或商业机密的内容，请仅填写本次辅导必要的信息。"
+              ></textarea>
+              <small class="counter" data-for="background">0 / 600</small>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-heading">
+            <span>03</span>
+            <div>
+              <h2>确认与签名</h2>
+              <p>请本人阅读确认后完成手写签名</p>
+            </div>
+          </div>
+
+          <div class="notice">
+            <strong>提交前请确认</strong>
+            <p>
+              本确认单用于记录本次辅导的准备信息与双方沟通依据，不替代双方另行签署的正式服务合同。
+              顾问将根据您提供的信息做针对性准备，但辅导建议不构成对经营结果的承诺。
+            </p>
+          </div>
+
+          <label class="check-row">
+            <input name="truthConfirmed" type="checkbox" required />
+            <span>
+              我确认以上内容由本人填写，信息真实、完整，并同意其仅用于本次辅导准备、服务记录与后续复盘。
+              <b>*</b>
+            </span>
+          </label>
+
+          <label class="check-row">
+            <input name="serviceConfirmed" type="checkbox" required />
+            <span>
+              我已阅读上述说明，自愿提交本确认单，并认可电子手写签名作为本人确认本次内容的凭据。
+              <b>*</b>
+            </span>
+          </label>
+
+          <div class="signature-field">
+            <div class="signature-top">
+              <span>请在下方手写签名 <b>*</b></span>
+              <div>
+                <button id="undoSignature" type="button">撤销</button>
+                <button id="clearSignature" type="button">清空</button>
+              </div>
+            </div>
+            <div class="signature-wrap">
+              <canvas id="signaturePad" aria-label="手写签名区域"></canvas>
+              <div id="signatureHint" class="signature-hint">
+                <span>请用手指或鼠标签名</span>
+                <i></i>
+              </div>
+            </div>
+            <small>手机可直接用手指书写；电脑可按住鼠标书写。</small>
+            <p id="signatureError" class="field-error" role="alert"></p>
+          </div>
+        </section>
+
+        <div class="submit-area">
+          <button id="submitButton" class="primary-button" type="submit">
+            <span>确认无误，签名并提交</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
+          <p>
+            提交即生成唯一凭证编号及校验码。请保存凭证，并发送给您的服务顾问完成双方留档。
+          </p>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <p>© <span id="currentYear"></span> <span data-brand>客户服务中心</span></p>
+      <span>专业 · 真诚 · 长期主义</span>
+    </footer>
+
+    <div id="successModal" class="modal" hidden>
+      <div class="modal-backdrop"></div>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+        <button id="closeModal" class="modal-close" type="button" aria-label="关闭">×</button>
+        <div class="success-seal">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m5 12 4 4L19 6" />
+          </svg>
+        </div>
+        <span class="modal-kicker">SUBMISSION CONFIRMED</span>
+        <h2 id="successTitle">确认单已生成</h2>
+        <p id="successMessage">请保存或分享下方凭证，发送给您的服务顾问完成双方留档。</p>
+
+        <div id="receipt" class="receipt">
+          <div class="receipt-head">
+            <div>
+              <small>客户辅导服务</small>
+              <strong>会前确认凭证</strong>
+            </div>
+            <span class="receipt-status">已签署</span>
+          </div>
+          <dl>
+            <div>
+              <dt>客户姓名</dt>
+              <dd data-receipt="clientName"></dd>
+            </div>
+            <div>
+              <dt>预约时间</dt>
+              <dd data-receipt="sessionAt"></dd>
+            </div>
+            <div>
+              <dt>辅导方式</dt>
+              <dd data-receipt="sessionMode"></dd>
+            </div>
+            <div>
+              <dt>提交时间</dt>
+              <dd data-receipt="submittedAt"></dd>
+            </div>
+          </dl>
+          <div class="receipt-signature">
+            <div>
+              <small>客户本人签名</small>
+              <img id="receiptSignature" alt="客户电子签名" />
+            </div>
+            <div class="receipt-brand">
+              <span data-brand>客户服务中心</span>
+              <small>服务记录专用</small>
+            </div>
+          </div>
+          <div class="receipt-code">
+            <div>
+              <small>凭证编号</small>
+              <strong data-receipt="recordId"></strong>
+            </div>
+            <button id="copyRecordId" type="button">复制</button>
+          </div>
+          <p class="hash-line">
+            校验码：<span data-receipt="hash"></span>
+          </p>
+        </div>
+
+        <div class="modal-actions">
+          <button id="shareReceipt" class="primary-button compact" type="button">
+            保存 / 分享图片凭证
+          </button>
+          <button id="printReceipt" class="secondary-button" type="button">打印 / 存为 PDF</button>
+        </div>
+        <small class="storage-note" id="storageNote"></small>
+      </section>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
