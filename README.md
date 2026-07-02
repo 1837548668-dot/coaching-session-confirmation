@@ -44,7 +44,7 @@ npx html-validate@9.7.1 docs/index.html docs/admin/index.html
 ## 数据库迁移
 
 ```powershell
-npx wrangler d1 migrations apply ai-planet-coaching --remote
+npx wrangler d1 migrations apply ai-planet-coaching-apac --remote
 ```
 
 ## 部署

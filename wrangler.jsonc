@@ -9,8 +9,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "ai-planet-coaching",
-      "database_id": "a08c1abe-df39-4169-90ef-f74ef7d0f5ab"
+      "database_name": "ai-planet-coaching-apac",
+      "database_id": "aff5cad2-ae44-4616-a507-ea81d6e2a62e"
     }
   ]
 }
