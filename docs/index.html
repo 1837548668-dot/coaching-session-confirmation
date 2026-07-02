@@ -52,6 +52,14 @@
       </section>
 
       <form id="briefForm" class="form-shell">
+        <input
+          class="honeypot"
+          name="website"
+          type="text"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        >
         <section class="form-section">
           <div class="section-heading">
             <span>01</span>
@@ -195,7 +203,10 @@
 
     <footer>
       <p>© <span id="currentYear"></span> <span data-brand>AI星球</span></p>
-      <span>专业 · 真诚 · 长期主义</span>
+      <div>
+        <span>专业 · 真诚 · 长期主义</span>
+        <a href="https://ai-planet-coaching.pages.dev/admin/" rel="nofollow">管理入口</a>
+      </div>
     </footer>
 
     <div id="successModal" class="modal" hidden>

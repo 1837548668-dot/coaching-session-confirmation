@@ -48,6 +48,16 @@ button {
   color: inherit;
 }
 
+.honeypot {
+  position: fixed !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .ambient {
   position: fixed;
   z-index: -1;
@@ -535,6 +545,21 @@ footer p {
   margin: 0;
 }
 
+footer > div {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+footer a {
+  color: #899395;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--navy);
+}
+
 .modal[hidden] {
   display: none;
 }
@@ -936,7 +961,7 @@ footer p {
     padding-bottom: 34px;
   }
 
-  footer > span {
+  footer > div > span {
     display: none;
   }
 

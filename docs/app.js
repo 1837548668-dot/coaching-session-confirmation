@@ -17,6 +17,7 @@
   const storageNote = document.querySelector("#storageNote");
   const context = canvas.getContext("2d");
   const strokes = [];
+  const pageStartedAt = Date.now();
   let activeStroke = null;
   let currentRecord = null;
   let toastTimer = null;
@@ -238,6 +239,8 @@
       sessionAt: new Date(formData.get("sessionAt")).toISOString(),
       sessionMode: formData.get("sessionMode"),
       coreIssue: formData.get("coreIssue").trim(),
+      website: formData.get("website") || "",
+      pageStartedAt,
       truthConfirmed: formData.get("truthConfirmed") === "on",
       serviceConfirmed: formData.get("serviceConfirmed") === "on",
       signature: signatureDataUrl(),
@@ -260,7 +263,7 @@
     populateReceipt(record);
 
     if (syncResult.synced) {
-      storageNote.textContent = "本次记录已同步至团队后台，同时已保存在当前设备。";
+      storageNote.textContent = "本次记录已同步至 AI星球管理后台，同时已保存在当前设备。";
     } else if (syncResult.reason === "failed") {
       storageNote.textContent =
         "后台同步暂时失败，请务必保存或分享图片凭证；记录已保存在当前设备。";

@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ai-planet-coaching",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-06-17",
+  "account_id": "7f4d23c0e425bc3f3b0a02c0119212e2",
+  "assets": {
+    "directory": "./docs",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "PUBLIC_ORIGINS": "https://1837548668-dot.github.io"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ai-planet-coaching",
+      "database_id": "a08c1abe-df39-4169-90ef-f74ef7d0f5ab",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

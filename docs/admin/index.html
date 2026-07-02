@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b2230">
+    <meta name="robots" content="noindex,nofollow">
+    <title>AI星球 · 客户服务管理后台</title>
+    <link rel="icon" href="../assets/ai-planet-logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="./admin.css">
+    <script src="./admin.js" defer></script>
+  </head>
+  <body>
+    <div id="loginView" class="login-view">
+      <div class="login-orbit orbit-one" aria-hidden="true"></div>
+      <div class="login-orbit orbit-two" aria-hidden="true"></div>
+      <section class="login-card">
+        <img src="../assets/ai-planet-logo.jpg" alt="AI星球 Logo">
+        <span class="login-kicker">AI PLANET · CLIENT SUCCESS</span>
+        <h1>客户服务管理后台</h1>
+        <p>查看客户确认单、电子签名与服务进度</p>
+        <form id="loginForm">
+          <label>
+            <span>管理密码</span>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="请输入后台管理密码"
+              required
+            >
+          </label>
+          <p id="loginError" class="form-error" role="alert"></p>
+          <button id="loginButton" type="submit">安全登录</button>
+        </form>
+        <small>受加密会话保护 · 12 小时后自动退出</small>
+      </section>
+    </div>
+
+    <div id="dashboardView" class="dashboard-view" hidden>
+      <aside class="sidebar" aria-label="后台侧边栏">
+        <a class="brand" href="./">
+          <img src="../assets/ai-planet-logo.jpg" alt="AI星球 Logo">
+          <span>
+            <strong>AI星球</strong>
+            <small>CLIENT SUCCESS</small>
+          </span>
+        </a>
+
+        <nav aria-label="后台主导航">
+          <button class="nav-item active" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 5h16v14H4zM4 10h16M9 10v9" />
+            </svg>
+            客户确认记录
+          </button>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a href="../" target="_blank" rel="noopener">打开客户填写页</a>
+          <button id="logoutButton" type="button">退出登录</button>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-header">
+          <div>
+            <span class="page-kicker">CLIENT SERVICE CONTROL</span>
+            <h1>客户辅导确认记录</h1>
+            <p>集中查看每一次客户提交、签名与跟进状态</p>
+          </div>
+          <div class="header-actions">
+            <button id="refreshButton" class="icon-button" type="button" aria-label="刷新记录">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6" />
+              </svg>
+            </button>
+            <a class="export-button" href="/api/admin/export.csv">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" />
+              </svg>
+              导出 Excel
+            </a>
+          </div>
+        </header>
+
+        <section class="stats-grid" aria-label="数据概览">
+          <article class="stat-card">
+            <div class="stat-icon navy">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" />
+              </svg>
+            </div>
+            <div>
+              <small>全部记录</small>
+              <strong id="statTotal">—</strong>
+            </div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon gold">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 8v4l3 2M4 12a8 8 0 1 0 16 0 8 8 0 1 0-16 0" />
+              </svg>
+            </div>
+            <div>
+              <small>新提交</small>
+              <strong id="statNew">—</strong>
+            </div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon cyan">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 6h14v14H5zM8 3v6m8-6v6M5 11h14" />
+              </svg>
+            </div>
+            <div>
+              <small>待服务安排</small>
+              <strong id="statUpcoming">—</strong>
+            </div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 12 4 4L19 6" />
+              </svg>
+            </div>
+            <div>
+              <small>已完成</small>
+              <strong id="statCompleted">—</strong>
+            </div>
+          </article>
+        </section>
+
+        <section class="records-panel">
+          <div class="toolbar">
+            <label class="search-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16.5 16.5 4 4"></path>
+              </svg>
+              <input id="searchInput" type="search" placeholder="搜索姓名、联系方式、凭证编号或问题">
+            </label>
+            <label class="status-filter">
+              <span>状态</span>
+              <select id="statusFilter">
+                <option value="all">全部状态</option>
+                <option value="new">新提交</option>
+                <option value="contacted">已联系</option>
+                <option value="scheduled">已排期</option>
+                <option value="completed">已完成</option>
+                <option value="archived">已归档</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>客户</th>
+                  <th>预约辅导</th>
+                  <th>辅导方式</th>
+                  <th>提交时间</th>
+                  <th>状态</th>
+                  <th><span class="sr-only">操作</span></th>
+                </tr>
+              </thead>
+              <tbody id="recordsBody"></tbody>
+            </table>
+            <div id="loadingState" class="panel-state">
+              <span class="spinner"></span>
+              正在加载客户记录…
+            </div>
+            <div id="emptyState" class="panel-state" hidden>
+              <strong>还没有符合条件的记录</strong>
+              <span>新的客户提交会自动出现在这里。</span>
+            </div>
+            <div id="errorState" class="panel-state error" hidden>
+              <strong>记录加载失败</strong>
+              <button id="retryButton" type="button">重新加载</button>
+            </div>
+          </div>
+
+          <div class="pagination">
+            <span id="resultCount">共 0 条</span>
+            <div>
+              <button id="prevPage" type="button">上一页</button>
+              <span id="pageLabel">1 / 1</span>
+              <button id="nextPage" type="button">下一页</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="detailOverlay" class="detail-overlay" hidden>
+      <div class="detail-backdrop"></div>
+      <aside class="detail-drawer" aria-labelledby="detailTitle">
+        <header>
+          <div>
+            <span>客户确认单详情</span>
+            <h2 id="detailTitle">—</h2>
+          </div>
+          <button id="closeDetail" type="button" aria-label="关闭详情">×</button>
+        </header>
+
+        <div id="detailLoading" class="detail-loading">
+          <span class="spinner"></span>
+        </div>
+
+        <div id="detailContent" class="detail-content" hidden>
+          <div class="detail-status-row">
+            <span id="detailStatusBadge" class="status-badge">—</span>
+            <small id="detailRecordId">—</small>
+          </div>
+
+          <section class="detail-section">
+            <h3>客户与预约</h3>
+            <dl class="detail-grid">
+              <div><dt>客户姓名</dt><dd id="detailClientName">—</dd></div>
+              <div><dt>联系电话 / 微信</dt><dd id="detailContact">—</dd></div>
+              <div><dt>预约时间</dt><dd id="detailSessionAt">—</dd></div>
+              <div><dt>辅导方式</dt><dd id="detailSessionMode">—</dd></div>
+              <div><dt>提交时间</dt><dd id="detailSubmittedAt">—</dd></div>
+              <div><dt>客户时区</dt><dd id="detailTimezone">—</dd></div>
+            </dl>
+          </section>
+
+          <section class="detail-section">
+            <h3>本次核心问题</h3>
+            <p id="detailCoreIssue" class="issue-content">—</p>
+          </section>
+
+          <section class="detail-section">
+            <h3>客户电子签名</h3>
+            <div class="signature-card">
+              <img id="detailSignature" src="../assets/ai-planet-logo.jpg" alt="客户电子签名">
+              <div>
+                <span>本人已签署</span>
+                <small id="detailHash">—</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-section management-section">
+            <h3>内部跟进</h3>
+            <label>
+              <span>处理状态</span>
+              <select id="detailStatus">
+                <option value="new">新提交</option>
+                <option value="contacted">已联系</option>
+                <option value="scheduled">已排期</option>
+                <option value="completed">已完成</option>
+                <option value="archived">已归档</option>
+              </select>
+            </label>
+            <label>
+              <span>内部备注</span>
+              <textarea
+                id="detailNotes"
+                rows="5"
+                maxlength="3000"
+                placeholder="记录跟进结果、客户偏好或下一步安排，仅后台可见。"
+              ></textarea>
+            </label>
+            <p id="detailError" class="form-error" role="alert"></p>
+            <button id="saveDetail" class="save-button" type="button">保存跟进信息</button>
+          </section>
+        </div>
+      </aside>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

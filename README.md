@@ -1,37 +1,56 @@
-# AI星球 · 客户辅导服务会前确认单
+# AI星球 · 客户辅导确认系统
 
-一个支持手机、平板和电脑的公开网页确认单，包含：
+一套完整的客户辅导确认与后台管理网站。
 
-- 客户基本信息和会前问题采集
+## 线上地址
+
+- 客户填写端：<https://ai-planet-coaching.pages.dev/>
+- 管理后台：<https://ai-planet-coaching.pages.dev/admin/>
+
+## 功能
+
+### 客户填写端
+
+- 响应式会前确认表
 - 触屏 / 鼠标手写签名
 - 唯一凭证编号与 SHA-256 校验码
-- 图片凭证保存与系统分享
-- 打印或另存为 PDF
-- 本设备最近 20 条记录留存
-- 可选的团队后台 JSON 同步接口
-- PWA 离线缓存
-- AI星球品牌 Logo
+- 图片凭证分享、下载和打印
+- 提交后自动进入管理后台
 
-## 修改品牌
+### 管理后台
 
-编辑 `config.js`：
+- 管理密码和安全会话
+- 数据概览、搜索和状态筛选
+- 客户问题与电子签名详情
+- 跟进状态和内部备注
+- CSV / Excel 数据导出
+- 登录限流和公共提交限流
 
-```js
-window.APP_CONFIG = {
-  brandName: "AI星球",
-  logoPath: "./assets/ai-planet-logo.jpg",
-  submissionEndpoint: "",
-};
-```
+## 技术架构
 
-## 接入团队后台
+- Cloudflare Pages Functions
+- Cloudflare D1
+- 静态 HTML / CSS / JavaScript
+- HttpOnly、Secure、SameSite 管理会话
 
-将 `submissionEndpoint` 配置为可接收 JSON POST 的 HTTPS 地址。未配置后台时，填写者仍可生成并保存正式图片凭证，但需要通过微信等方式把凭证发送给顾问，才算完成团队端留档。
-
-## 本地预览
+## 本地检查
 
 ```powershell
-python -m http.server 4173
+npm install
+npm run check
+npx html-validate@9.7.1 docs/index.html docs/admin/index.html
 ```
 
-打开 <http://localhost:4173>。
+## 数据库迁移
+
+```powershell
+npx wrangler d1 migrations apply ai-planet-coaching --remote
+```
+
+## 部署
+
+```powershell
+npx wrangler pages deploy docs --project-name ai-planet-coaching --branch codex/customer-voucher-form
+```
+
+管理密码和会话密钥通过 Cloudflare Pages Secrets 配置，不写入仓库。

@@ -1,0 +1,17 @@
+{
+  "name": "ai-planet-coaching",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check worker/index.js && node --check docs/app.js && node --check docs/admin/admin.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler pages deploy docs --project-name ai-planet-coaching --branch codex/customer-voucher-form",
+    "deploy:worker": "wrangler --config wrangler.worker.jsonc deploy",
+    "db:migrate:local": "wrangler d1 migrations apply ai-planet-coaching --local",
+    "db:migrate:remote": "wrangler d1 migrations apply ai-planet-coaching --remote"
+  },
+  "devDependencies": {
+    "wrangler": "4.26.0"
+  }
+}
