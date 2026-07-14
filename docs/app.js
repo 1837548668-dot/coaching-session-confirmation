@@ -26,7 +26,7 @@
     element.textContent = config.brandName;
   });
   document.querySelector("#currentYear").textContent = new Date().getFullYear();
-  document.title = `${config.brandName} · 客户辅导会前确认单`;
+  document.title = `${config.brandName} · 客户辅导确认函`;
 
   const sessionInput = form.elements.sessionAt;
   const now = new Date();

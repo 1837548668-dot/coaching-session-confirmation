@@ -8,7 +8,7 @@
       name="description"
       content="客户辅导服务会前确认单：记录辅导目标、重点问题与电子手写签名。"
     >
-    <title>客户辅导服务 · 会前确认单</title>
+    <title>AI星球 · 客户辅导确认函</title>
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="icon" href="./assets/ai-planet-logo.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" href="./assets/ai-planet-logo.jpg">
@@ -17,15 +17,12 @@
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <div class="ambient ambient-one" aria-hidden="true"></div>
-    <div class="ambient ambient-two" aria-hidden="true"></div>
-
     <header class="topbar">
       <a class="brand" href="./" aria-label="返回确认单首页">
         <img class="brand-logo" src="./assets/ai-planet-logo.jpg" alt="AI星球 Logo">
         <span>
           <strong data-brand>AI星球</strong>
-          <small>AI PLANET · CLIENT SUCCESS</small>
+          <small>AI PLANET · 客户服务中心</small>
         </span>
       </a>
       <div class="secure-label">
@@ -34,24 +31,8 @@
       </div>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="eyebrow">AI星球 · PRE-SESSION BRIEF</div>
-        <h1>客户辅导服务<br><em>会前确认单</em></h1>
-        <p>
-          请在辅导开始前用 3–5 分钟完成。您的回答将帮助顾问提前理解现状，
-          把本次时间真正用在最重要的问题上。
-        </p>
-        <div class="hero-meta">
-          <span>预计 3–5 分钟</span>
-          <i></i>
-          <span>支持手写签名</span>
-          <i></i>
-          <span>提交后生成凭证</span>
-        </div>
-      </section>
-
-      <form id="briefForm" class="form-shell">
+    <main class="document-page">
+      <form id="briefForm" class="form-shell document-form">
         <input
           class="honeypot"
           name="website"
@@ -60,116 +41,110 @@
           autocomplete="off"
           aria-hidden="true"
         >
-        <section class="form-section">
-          <div class="section-heading">
-            <span>01</span>
-            <div>
-              <h2>基本信息</h2>
-              <p>用于确认本次服务对象和联系信息</p>
-            </div>
+        <header class="document-head">
+          <img src="./assets/ai-planet-logo.jpg" alt="AI星球 Logo">
+          <div class="document-brand">
+            <strong data-brand>AI星球</strong>
+            <small>AI PLANET · CLIENT COACHING SERVICE</small>
           </div>
+          <div class="document-title">
+            <span></span>
+            <h1>《客户辅导确认函》</h1>
+            <span></span>
+          </div>
+          <p>请客户本人于辅导开始前如实填写，并在阅读确认后完成电子手写签名。</p>
+        </header>
 
-          <div class="field-grid">
-            <label class="field">
-              <span>您的姓名 <b>*</b></span>
-              <input
-                name="clientName"
-                type="text"
-                autocomplete="name"
-                maxlength="30"
-                placeholder="请输入真实姓名"
-                required
-              >
+        <section class="document-grid" aria-label="客户与辅导基本信息">
+          <label class="document-cell half">
+            <span>姓名 <b>*</b></span>
+            <input
+              name="clientName"
+              type="text"
+              autocomplete="name"
+              maxlength="30"
+              placeholder="请输入真实姓名"
+              required
+            >
+          </label>
+          <label class="document-cell half">
+            <span>电话 / 微信 <b>*</b></span>
+            <input
+              name="contact"
+              type="text"
+              autocomplete="tel"
+              maxlength="50"
+              placeholder="请输入联系方式"
+              required
+            >
+          </label>
+          <label class="document-cell half">
+            <span>辅导时间 <b>*</b></span>
+            <input name="sessionAt" type="datetime-local" required>
+          </label>
+          <label class="document-cell half">
+            <span>辅导方式 <b>*</b></span>
+            <select name="sessionMode" required>
+              <option value="">请选择</option>
+              <option>线上视频</option>
+              <option>线下面谈</option>
+              <option>电话沟通</option>
+              <option>其他方式</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="document-intro">
+          <p>
+            本次客户辅导由 <strong data-brand>AI星球</strong> 提供专业顾问服务。为帮助顾问提前了解客户现状、
+            聚焦关键问题并提高本次辅导效率，请您填写以下内容。本确认函将作为本次辅导的服务记录与双方沟通凭据。
+          </p>
+        </section>
+
+        <section class="document-section focus-section">
+          <h2>本次辅导重点</h2>
+          <label class="document-question">
+            <strong>本次最希望解决的一个核心问题是什么？ <b>*</b></strong>
+            <textarea
+              name="coreIssue"
+              rows="7"
+              maxlength="800"
+              placeholder="请尽量描述具体场景、当前卡点，以及它对您的影响……"
+              required
+            ></textarea>
+            <small class="counter" data-for="coreIssue">0 / 800</small>
+          </label>
+        </section>
+
+        <section class="document-section agreement-section">
+          <h2>特别约定（必读）</h2>
+          <ol>
+            <li>本确认函用于记录本次辅导的准备信息、客户诉求与双方沟通依据，不替代双方另行签署的正式服务合同。</li>
+            <li>顾问将依据客户填写的信息进行针对性准备并提供专业建议；具体执行与经营结果受多种因素影响，不构成结果承诺。</li>
+            <li>客户提交电子手写签名，即表示已阅读、理解并同意本确认函全部内容。</li>
+          </ol>
+
+          <div class="confirmation-boxes">
+            <label class="check-row">
+              <input name="truthConfirmed" type="checkbox" required>
+              <span>
+                我确认以上内容由本人填写，信息真实、完整，并同意其仅用于本次辅导准备、服务记录与后续复盘。<b>*</b>
+              </span>
             </label>
-            <label class="field">
-              <span>联系电话 / 微信 <b>*</b></span>
-              <input
-                name="contact"
-                type="text"
-                autocomplete="tel"
-                maxlength="50"
-                placeholder="便于顾问与您确认安排"
-                required
-              >
-            </label>
-            <label class="field">
-              <span>预约辅导时间 <b>*</b></span>
-              <input name="sessionAt" type="datetime-local" required>
-            </label>
-            <label class="field">
-              <span>辅导方式 <b>*</b></span>
-              <select name="sessionMode" required>
-                <option value="">请选择</option>
-                <option>线上视频</option>
-                <option>线下面谈</option>
-                <option>电话沟通</option>
-                <option>其他方式</option>
-              </select>
+
+            <label class="check-row">
+              <input name="serviceConfirmed" type="checkbox" required>
+              <span>
+                我已阅读上述说明，自愿提交本确认函，并认可电子手写签名作为本人确认本次内容的凭据。<b>*</b>
+              </span>
             </label>
           </div>
         </section>
 
-        <section class="form-section">
-          <div class="section-heading">
-            <span>02</span>
-            <div>
-              <h2>本次辅导重点</h2>
-              <p>越具体，顾问越能提前做好准备</p>
-            </div>
-          </div>
-
-          <div class="field-stack">
-            <label class="field">
-              <span>本次最希望解决的一个核心问题是什么？ <b>*</b></span>
-              <textarea
-                name="coreIssue"
-                rows="5"
-                maxlength="800"
-                placeholder="请尽量描述具体场景、当前卡点，以及它对您的影响……"
-                required
-              ></textarea>
-              <small class="counter" data-for="coreIssue">0 / 800</small>
-            </label>
-
-          </div>
-        </section>
-
-        <section class="form-section">
-          <div class="section-heading">
-            <span>03</span>
-            <div>
-              <h2>确认与签名</h2>
-              <p>请本人阅读确认后完成手写签名</p>
-            </div>
-          </div>
-
-          <div class="notice">
-            <strong>提交前请确认</strong>
-            <p>
-              本确认单用于记录本次辅导的准备信息与双方沟通依据，不替代双方另行签署的正式服务合同。
-              顾问将根据您提供的信息做针对性准备，但辅导建议不构成对经营结果的承诺。
-            </p>
-          </div>
-
-          <label class="check-row">
-            <input name="truthConfirmed" type="checkbox" required>
-            <span>
-              我确认以上内容由本人填写，信息真实、完整，并同意其仅用于本次辅导准备、服务记录与后续复盘。
-              <b>*</b>
-            </span>
-          </label>
-
-          <label class="check-row">
-            <input name="serviceConfirmed" type="checkbox" required>
-            <span>
-              我已阅读上述说明，自愿提交本确认单，并认可电子手写签名作为本人确认本次内容的凭据。
-              <b>*</b>
-            </span>
-          </label>
-
+        <section class="document-section signature-section">
           <div class="signature-field">
             <div class="signature-top">
-              <span>请在下方手写签名 <b>*</b></span>
+              <span>客户本人手写签名 <b>*</b></span>
               <div>
                 <button id="undoSignature" type="button">撤销</button>
                 <button id="clearSignature" type="button">清空</button>
@@ -194,9 +169,7 @@
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </button>
-          <p>
-            提交即生成唯一凭证编号及校验码。请保存凭证，并发送给您的服务顾问完成双方留档。
-          </p>
+          <p>提交后将生成唯一凭证编号及校验码，请保存凭证并发送给您的服务顾问完成双方留档。</p>
         </div>
       </form>
     </main>
