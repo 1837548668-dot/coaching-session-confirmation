@@ -27,8 +27,7 @@
           autocomplete="off"
           aria-hidden="true"
         >
-        <input name="sessionAt" type="hidden">
-        <input name="sessionMode" type="hidden" value="线下面谈">
+        <input name="sessionMode" type="hidden" value="线上视频">
         <input name="coreIssue" type="hidden" value="课程9大商业核心主题">
 
         <header class="document-head exact-head">
@@ -58,46 +57,25 @@
               required
             >
           </label>
-          <label class="exact-cell id-cell">
-            <span>身份证号</span>
-            <input
-              name="idNumber"
-              type="text"
-              inputmode="text"
-              maxlength="30"
-              placeholder="请填写"
-              required
-            >
+          <label class="exact-cell">
+            <span>辅导时间</span>
+            <input name="sessionAt" type="datetime-local" required>
           </label>
-          <label class="exact-cell location-cell">
-            <span>上课地点</span>
-            <input
-              name="classLocation"
-              type="text"
-              maxlength="80"
-              value="上海沪华名都酒店"
-              required
-            >
-          </label>
-          <div class="exact-time-row">
-            <span>交付时间</span>
-            <div class="date-range">
-              <input name="deliveryStart" type="date" value="2026-04-26" required>
-              <em>—</em>
-              <input name="deliveryEnd" type="date" value="2026-04-27" required>
-            </div>
+          <div class="exact-cell fixed-mode" aria-label="辅导方式：线上视频">
+            <span>辅导方式</span>
+            <strong>线上视频</strong>
           </div>
         </section>
 
         <section class="exact-intro">
-          <p>
+          <p id="formIntroText">
             本次课程交付为轩辕（上海）教育科技有限公司（甲方）和<span class="inline-blank"></span>（乙方姓名）合作服务内容：课程仅限168000/268000元私董会成员参加，根据课程协议要求，为了保护双方的合法权益，如约完成课程的交付内容，甲方以书面形式告知本课程的内容明细及注意事项：
           </p>
         </section>
 
         <section class="exact-topics">
-          <h2>课程 9 大商业核心主题：</h2>
-          <ol>
+          <h2 id="formTopicsTitle">课程 9 大商业核心主题：</h2>
+          <ol id="formTopicsList">
             <li>如何精准看懂商业周期，把握时代风口与财富机遇？</li>
             <li>如何锤炼强大心理素质，在商业竞争中从容破局？</li>
             <li>如何打造世界级营销体系，实现品牌与业绩双爆发？</li>

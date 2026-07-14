@@ -1128,6 +1128,205 @@ tbody tr:hover {
   }
 }
 
+.settings-panel {
+  max-width: 980px;
+}
+
+.settings-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.settings-header h1 {
+  margin: 7px 0 8px;
+  color: var(--navy);
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(29px, 4vw, 40px);
+}
+
+.settings-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.preview-link {
+  flex: 0 0 auto;
+  padding: 11px 16px;
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #ccd5d7;
+  border-radius: 9px;
+}
+
+.settings-form {
+  display: grid;
+  gap: 20px;
+}
+
+.settings-card {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e1e7e8;
+  border-radius: 16px;
+  box-shadow: 0 13px 35px rgba(21, 48, 61, 0.06);
+}
+
+.settings-card-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 23px;
+}
+
+.settings-card-head > span {
+  display: grid;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 12px;
+  border: 1px solid #dccb9f;
+  border-radius: 50%;
+  place-items: center;
+}
+
+.settings-card-head h2 {
+  margin: 0 0 5px;
+  color: var(--navy);
+  font-family: "Noto Serif SC", serif;
+  font-size: 20px;
+}
+
+.settings-card-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.settings-card label,
+.topic-fields label {
+  display: grid;
+  gap: 8px;
+}
+
+.settings-card label > span,
+.topic-fields label > span {
+  color: #41515a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-card input,
+.settings-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  color: #24353d;
+  background: #fbfcfc;
+  border: 1px solid #d6dfe0;
+  border-radius: 9px;
+  outline: none;
+  resize: vertical;
+}
+
+.settings-card input {
+  height: 46px;
+}
+
+.settings-card input:focus,
+.settings-card textarea:focus {
+  background: #fff;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(185, 150, 91, 0.12);
+}
+
+.topic-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 21px;
+}
+
+.topic-fields label:last-child {
+  grid-column: 1 / -1;
+}
+
+.settings-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 6px 2px 20px;
+}
+
+.settings-actions small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 680px) {
+  .sidebar {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  .sidebar nav {
+    display: flex;
+    order: 3;
+    width: 100%;
+    gap: 7px;
+    margin-top: 7px;
+  }
+
+  .sidebar .nav-item {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 7px;
+    font-size: 11px;
+  }
+
+  .sidebar .nav-item svg {
+    width: 16px;
+  }
+
+  .settings-header {
+    display: block;
+  }
+
+  .preview-link {
+    display: inline-block;
+    margin-top: 18px;
+  }
+
+  .settings-card {
+    padding: 20px 16px;
+  }
+
+  .topic-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .topic-fields label:last-child {
+    grid-column: auto;
+  }
+
+  .settings-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .settings-actions .save-button {
+    width: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

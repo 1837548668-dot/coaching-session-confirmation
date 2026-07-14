@@ -2,6 +2,22 @@ const SESSION_COOKIE = "ai_planet_admin";
 const SESSION_TTL_SECONDS = 12 * 60 * 60;
 const MAX_BODY_BYTES = 900_000;
 const ADMIN_STATUSES = new Set(["new", "contacted", "scheduled", "completed", "archived"]);
+const DEFAULT_FORM_SETTINGS = {
+  introText:
+    "本次课程交付为轩辕（上海）教育科技有限公司（甲方）和________（乙方姓名）合作服务内容：课程仅限168000/268000元私董会成员参加，根据课程协议要求，为了保护双方的合法权益，如约完成课程的交付内容，甲方以书面形式告知本课程的内容明细及注意事项：",
+  topicsTitle: "课程 9 大商业核心主题：",
+  topics: [
+    "如何精准看懂商业周期，把握时代风口与财富机遇？",
+    "如何锤炼强大心理素质，在商业竞争中从容破局？",
+    "如何打造世界级营销体系，实现品牌与业绩双爆发？",
+    "如何搭建顶尖商业组织，筑牢企业发展根基？",
+    "如何做好科学目标管理，让每一步行动都指向成功？",
+    "如何打造疯狂粉丝社群，沉淀高粘性客户资产？",
+    "如何实现企业自动化运营，摆脱事务性缠身？",
+    "如何搭建多元被动收入管道，实现财富自由？",
+    "如何做好全球资产配置，守住并放大财富？",
+  ],
+};
 
 export default {
   async fetch(request, env) {
@@ -26,7 +42,7 @@ export default {
 };
 
 async function handleApi(request, env, url) {
-  const corsHeaders = buildCorsHeaders(request, env);
+  const corsHeaders = buildCorsHeaders(request, env, url);
 
   if (request.method === "OPTIONS") {
     if (!corsHeaders) return new Response(null, { status: 403 });
@@ -43,6 +59,10 @@ async function handleApi(request, env, url) {
     }
     const response = await createSubmission(request, env);
     return addHeaders(response, corsHeaders || {});
+  }
+
+  if (url.pathname === "/api/form-settings" && request.method === "GET") {
+    return getFormSettings(env, true);
   }
 
   if (url.pathname === "/api/admin/login" && request.method === "POST") {
@@ -75,6 +95,13 @@ async function handleApi(request, env, url) {
     return listSubmissions(env, url);
   }
 
+  if (url.pathname === "/api/admin/form-settings" && request.method === "GET") {
+    return getFormSettings(env, false);
+  }
+  if (url.pathname === "/api/admin/form-settings" && request.method === "PUT") {
+    return updateFormSettings(request, env);
+  }
+
   if (url.pathname === "/api/admin/export.csv" && request.method === "GET") {
     return exportCsv(env);
   }
@@ -88,6 +115,71 @@ async function handleApi(request, env, url) {
   }
 
   return json({ ok: false, message: "接口不存在。" }, 404);
+}
+
+async function getFormSettings(env, isPublic) {
+  const row = await env.DB.prepare(
+    "SELECT intro_text, topics_title, topics_json, updated_at FROM form_settings WHERE id = 1",
+  ).first();
+  const settings = row
+    ? {
+        introText: row.intro_text,
+        topicsTitle: row.topics_title,
+        topics: parseTopics(row.topics_json),
+        updatedAt: row.updated_at,
+      }
+    : { ...DEFAULT_FORM_SETTINGS, updatedAt: 0 };
+  return json(
+    { ok: true, settings },
+    200,
+    isPublic
+      ? { "Cache-Control": "no-store", "Access-Control-Allow-Origin": "*" }
+      : { "Cache-Control": "no-store" },
+  );
+}
+
+async function updateFormSettings(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ ok: false, message: "页面内容格式不正确。" }, 400);
+  }
+
+  const introText = cleanString(body.introText, 2000);
+  const topicsTitle = cleanString(body.topicsTitle, 100);
+  const topics = Array.isArray(body.topics)
+    ? body.topics.map((topic) => cleanString(topic, 240))
+    : [];
+  if (!introText) return json({ ok: false, message: "请填写中间的课程交付说明。" }, 400);
+  if (!topicsTitle) return json({ ok: false, message: "请填写九大主题标题。" }, 400);
+  if (topics.length !== 9 || topics.some((topic) => !topic)) {
+    return json({ ok: false, message: "请完整填写9条商业核心主题。" }, 400);
+  }
+
+  const updatedAt = Date.now();
+  await env.DB.prepare(
+    `INSERT INTO form_settings (id, intro_text, topics_title, topics_json, updated_at)
+     VALUES (1, ?, ?, ?, ?)
+     ON CONFLICT(id) DO UPDATE SET
+       intro_text = excluded.intro_text,
+       topics_title = excluded.topics_title,
+       topics_json = excluded.topics_json,
+       updated_at = excluded.updated_at`,
+  )
+    .bind(introText, topicsTitle, JSON.stringify(topics), updatedAt)
+    .run();
+  return json({ ok: true, settings: { introText, topicsTitle, topics, updatedAt } });
+}
+
+function parseTopics(value) {
+  try {
+    const topics = JSON.parse(value);
+    if (Array.isArray(topics) && topics.length === 9) return topics;
+  } catch {
+    // 数据异常时使用内置默认主题。
+  }
+  return DEFAULT_FORM_SETTINGS.topics;
 }
 
 async function createSubmission(request, env) {
@@ -510,7 +602,7 @@ function parseCookies(value) {
   );
 }
 
-function buildCorsHeaders(request, env) {
+function buildCorsHeaders(request, env, url) {
   const origin = request.headers.get("Origin");
   if (!origin) return {};
   const requestOrigin = new URL(request.url).origin;
@@ -519,6 +611,9 @@ function buildCorsHeaders(request, env) {
       .map((item) => item.trim())
       .filter(Boolean),
   );
+  if (url.pathname === "/api/submissions") {
+    allowed.add("null");
+  }
   if (!allowed.has(origin)) return null;
   return {
     "Access-Control-Allow-Origin": origin,

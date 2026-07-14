@@ -16,6 +16,12 @@
   const detailLoading = document.querySelector("#detailLoading");
   const detailContent = document.querySelector("#detailContent");
   const saveDetailButton = document.querySelector("#saveDetail");
+  const recordsNav = document.querySelector("#recordsNav");
+  const settingsNav = document.querySelector("#settingsNav");
+  const recordsSections = document.querySelectorAll("[data-records-section]");
+  const settingsPanel = document.querySelector("#settingsPanel");
+  const settingsForm = document.querySelector("#settingsForm");
+  const saveSettingsButton = document.querySelector("#saveSettings");
 
   const state = {
     page: 1,
@@ -108,6 +114,9 @@
   });
 
   saveDetailButton.addEventListener("click", saveDetail);
+  recordsNav.addEventListener("click", showRecordsView);
+  settingsNav.addEventListener("click", showSettingsView);
+  settingsForm.addEventListener("submit", saveFormSettings);
 
   async function boot() {
     try {
@@ -133,6 +142,106 @@
   function showDashboard() {
     loginView.hidden = true;
     dashboardView.hidden = false;
+    showRecordsView();
+  }
+
+  function showRecordsView() {
+    recordsSections.forEach((section) => {
+      section.hidden = false;
+    });
+    settingsPanel.hidden = true;
+    recordsNav.classList.add("active");
+    settingsNav.classList.remove("active");
+  }
+
+  async function showSettingsView() {
+    recordsSections.forEach((section) => {
+      section.hidden = true;
+    });
+    settingsPanel.hidden = false;
+    recordsNav.classList.remove("active");
+    settingsNav.classList.add("active");
+    await loadFormSettings();
+  }
+
+  async function loadFormSettings() {
+    const errorElement = document.querySelector("#settingsError");
+    errorElement.textContent = "";
+    saveSettingsButton.disabled = true;
+    saveSettingsButton.textContent = "正在加载…";
+    try {
+      const response = await api("/api/admin/form-settings");
+      const result = await response.json();
+      const settings = result.settings;
+      document.querySelector("#introText").value = settings.introText;
+      document.querySelector("#topicsTitle").value = settings.topicsTitle;
+      renderTopicFields(settings.topics);
+      document.querySelector("#settingsUpdatedAt").textContent = settings.updatedAt
+        ? `上次保存：${formatDateTime(new Date(settings.updatedAt).toISOString())}`
+        : "当前为默认内容";
+    } catch (error) {
+      if (error.status === 401) {
+        showLogin();
+        return;
+      }
+      errorElement.textContent = error.message || "内容加载失败";
+    } finally {
+      saveSettingsButton.disabled = false;
+      saveSettingsButton.textContent = "保存并更新客户页";
+    }
+  }
+
+  function renderTopicFields(topics) {
+    const container = document.querySelector("#topicFields");
+    container.replaceChildren(
+      ...topics.map((topic, index) => {
+        const label = document.createElement("label");
+        const number = document.createElement("span");
+        number.textContent = `第 ${index + 1} 条`;
+        const input = document.createElement("textarea");
+        input.rows = 2;
+        input.maxLength = 240;
+        input.required = true;
+        input.value = topic;
+        input.dataset.topic = String(index);
+        label.append(number, input);
+        return label;
+      }),
+    );
+  }
+
+  async function saveFormSettings(event) {
+    event.preventDefault();
+    if (!settingsForm.reportValidity()) return;
+    const errorElement = document.querySelector("#settingsError");
+    errorElement.textContent = "";
+    saveSettingsButton.disabled = true;
+    saveSettingsButton.textContent = "正在保存…";
+    try {
+      const response = await api("/api/admin/form-settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          introText: document.querySelector("#introText").value,
+          topicsTitle: document.querySelector("#topicsTitle").value,
+          topics: Array.from(document.querySelectorAll("[data-topic]"), (input) => input.value),
+        }),
+      });
+      const result = await response.json();
+      document.querySelector("#settingsUpdatedAt").textContent = `上次保存：${formatDateTime(
+        new Date(result.settings.updatedAt).toISOString(),
+      )}`;
+      showToast("客户页内容已更新");
+    } catch (error) {
+      if (error.status === 401) {
+        showLogin();
+      } else {
+        errorElement.textContent = error.message || "保存失败";
+      }
+    } finally {
+      saveSettingsButton.disabled = false;
+      saveSettingsButton.textContent = "保存并更新客户页";
+    }
   }
 
   async function loadRecords() {

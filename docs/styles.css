@@ -1421,6 +1421,15 @@ body {
   box-shadow: none;
 }
 
+.fixed-mode strong {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #222;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .exact-cell input:focus,
 .date-range input:focus {
   background: #fffbed;
@@ -1589,6 +1598,11 @@ footer,
 
   .exact-cell input {
     height: 43px;
+    padding: 0 6px;
+    font-size: 12px;
+  }
+
+  .fixed-mode strong {
     padding: 0 6px;
     font-size: 12px;
   }

@@ -49,11 +49,17 @@
         </a>
 
         <nav aria-label="后台主导航">
-          <button class="nav-item active" type="button">
+          <button id="recordsNav" class="nav-item active" type="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 5h16v14H4zM4 10h16M9 10v9" />
             </svg>
             客户确认记录
+          </button>
+          <button id="settingsNav" class="nav-item" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" />
+            </svg>
+            客户页内容设置
           </button>
         </nav>
 
@@ -64,7 +70,7 @@
       </aside>
 
       <main class="dashboard-main">
-        <header class="dashboard-header">
+        <header class="dashboard-header" data-records-section>
           <div>
             <span class="page-kicker">CLIENT SERVICE CONTROL</span>
             <h1>客户辅导确认记录</h1>
@@ -85,7 +91,7 @@
           </div>
         </header>
 
-        <section class="stats-grid" aria-label="数据概览">
+        <section class="stats-grid" data-records-section aria-label="数据概览">
           <article class="stat-card">
             <div class="stat-icon navy">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -132,7 +138,7 @@
           </article>
         </section>
 
-        <section class="records-panel">
+        <section class="records-panel" data-records-section>
           <div class="toolbar">
             <label class="search-field">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -190,6 +196,54 @@
               <button id="nextPage" type="button">下一页</button>
             </div>
           </div>
+        </section>
+
+        <section id="settingsPanel" class="settings-panel" hidden>
+          <header class="settings-header">
+            <div>
+              <span class="page-kicker">CUSTOMER PAGE CONTENT</span>
+              <h1>客户页内容设置</h1>
+              <p>保存后，客户打开确认函链接时会自动显示最新内容。</p>
+            </div>
+            <a class="preview-link" href="../" target="_blank" rel="noopener">预览客户填写页</a>
+          </header>
+
+          <form id="settingsForm" class="settings-form">
+            <section class="settings-card">
+              <div class="settings-card-head">
+                <span>01</span>
+                <div>
+                  <h2>课程交付说明</h2>
+                  <p>对应确认函表格下方的中间说明文字</p>
+                </div>
+              </div>
+              <label>
+                <span>说明文字</span>
+                <textarea id="introText" rows="7" maxlength="2000" required></textarea>
+              </label>
+            </section>
+
+            <section class="settings-card">
+              <div class="settings-card-head">
+                <span>02</span>
+                <div>
+                  <h2>九大商业核心主题</h2>
+                  <p>标题和9条内容均可随时修改</p>
+                </div>
+              </div>
+              <label>
+                <span>主题标题</span>
+                <input id="topicsTitle" type="text" maxlength="100" required>
+              </label>
+              <div id="topicFields" class="topic-fields"></div>
+            </section>
+
+            <p id="settingsError" class="form-error" role="alert"></p>
+            <div class="settings-actions">
+              <small id="settingsUpdatedAt">尚未加载</small>
+              <button id="saveSettings" class="save-button" type="submit">保存并更新客户页</button>
+            </div>
+          </form>
         </section>
       </main>
     </div>
