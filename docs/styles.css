@@ -1338,6 +1338,338 @@ body {
   }
 }
 
+/* 原确认书 1:1 数字化版式 */
+.document-page {
+  width: min(840px, calc(100% - 32px));
+  margin-top: 34px;
+}
+
+.document-form {
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.exact-head,
+.exact-grid,
+.exact-intro,
+.exact-topics,
+.exact-agreement {
+  background: #fff;
+  border-right: 1px solid #2f2f2f;
+  border-left: 1px solid #2f2f2f;
+}
+
+.exact-head {
+  display: grid;
+  min-height: 54px;
+  padding: 0 18px;
+  place-items: center;
+  border-top: 1px solid #2f2f2f;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.exact-head h1 {
+  margin: 0;
+  color: #171717;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.exact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.exact-cell {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  min-width: 0;
+  min-height: 48px;
+  border-bottom: 1px solid #555;
+}
+
+.exact-cell:nth-child(odd) {
+  border-right: 1px solid #2f2f2f;
+}
+
+.exact-cell > span,
+.exact-time-row > span {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #242424;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 16px;
+  white-space: nowrap;
+  border-right: 1px solid #555;
+}
+
+.exact-cell input {
+  height: 47px;
+  min-width: 0;
+  padding: 0 12px;
+  color: #222;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.exact-cell input:focus,
+.date-range input:focus {
+  background: #fffbed;
+  box-shadow: inset 0 0 0 2px rgba(70, 70, 70, 0.18);
+}
+
+.exact-time-row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 92px minmax(0, 1fr);
+  min-height: 58px;
+}
+
+.date-range {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 14px;
+}
+
+.date-range input {
+  width: 170px;
+  height: 42px;
+  padding: 0 6px;
+  text-align: center;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #555;
+  border-radius: 0;
+}
+
+.date-range em {
+  color: #444;
+  font-style: normal;
+}
+
+.exact-intro {
+  min-height: 130px;
+  padding: 28px 10px 22px;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.exact-intro p {
+  margin: 0;
+  color: #383838;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 14px;
+  line-height: 1.7;
+  text-indent: 2em;
+}
+
+.inline-blank {
+  display: inline-block;
+  width: 92px;
+  height: 1em;
+  vertical-align: baseline;
+  border-bottom: 1px solid #444;
+}
+
+.exact-topics {
+  min-height: 345px;
+  padding: 0 9px 24px;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.exact-topics h2 {
+  margin: 0 -9px 25px;
+  padding: 8px 9px;
+  color: #171717;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 23px;
+  border-bottom: 1px solid #555;
+}
+
+.exact-topics ol,
+.exact-agreement ol {
+  margin: 0;
+  padding-left: 24px;
+  color: #383838;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 17px;
+  line-height: 1.48;
+}
+
+.exact-agreement {
+  min-height: 340px;
+  padding: 48px 9px 34px;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.exact-agreement h2 {
+  margin: 0 0 26px;
+  color: #171717;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 21px;
+}
+
+.exact-agreement ol {
+  display: grid;
+  gap: 24px;
+  padding-left: 31px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.digital-confirmation {
+  margin-top: 28px;
+  padding: 22px 28px 28px;
+  background: #fff;
+  border: 1px solid #2f2f2f;
+}
+
+.digital-confirmation .check-row {
+  margin: 8px 0;
+}
+
+.digital-confirmation .signature-field {
+  margin-top: 22px;
+}
+
+.digital-confirmation .signature-wrap {
+  height: 180px;
+  border: 1px solid #555;
+}
+
+.document-form .exact-submit {
+  padding: 26px 28px 30px;
+  background: #f4f3ef;
+  border-right: 1px solid #2f2f2f;
+  border-bottom: 1px solid #2f2f2f;
+  border-left: 1px solid #2f2f2f;
+}
+
+footer,
+.topbar {
+  display: none;
+}
+
+@media (max-width: 680px) {
+  .document-page {
+    width: calc(100% - 16px);
+    margin-top: 12px;
+  }
+
+  .exact-head {
+    min-height: 48px;
+    padding: 0 6px;
+  }
+
+  .exact-head h1 {
+    font-size: 19px;
+    white-space: nowrap;
+  }
+
+  .exact-cell {
+    grid-template-columns: 65px minmax(0, 1fr);
+    min-height: 44px;
+  }
+
+  .exact-cell > span,
+  .exact-time-row > span {
+    padding: 0 5px;
+    font-size: 12px;
+  }
+
+  .exact-cell input {
+    height: 43px;
+    padding: 0 6px;
+    font-size: 12px;
+  }
+
+  .exact-time-row {
+    grid-template-columns: 65px minmax(0, 1fr);
+  }
+
+  .date-range {
+    gap: 4px;
+    padding: 4px 5px;
+  }
+
+  .date-range input {
+    width: 128px;
+    padding: 0;
+    font-size: 11px;
+  }
+
+  .exact-intro {
+    min-height: 0;
+    padding: 18px 8px;
+  }
+
+  .exact-intro p {
+    font-size: 11px;
+    line-height: 1.75;
+  }
+
+  .inline-blank {
+    width: 55px;
+  }
+
+  .exact-topics {
+    min-height: 0;
+    padding: 0 6px 20px;
+  }
+
+  .exact-topics h2 {
+    margin: 0 -6px 18px;
+    padding: 8px 6px;
+    font-size: 17px;
+  }
+
+  .exact-topics ol,
+  .exact-agreement ol {
+    padding-left: 21px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .exact-agreement {
+    min-height: 0;
+    padding: 30px 7px 26px;
+  }
+
+  .exact-agreement h2 {
+    margin-bottom: 20px;
+    font-size: 17px;
+  }
+
+  .exact-agreement ol {
+    gap: 18px;
+    padding-left: 24px;
+    line-height: 1.7;
+  }
+
+  .digital-confirmation {
+    margin-top: 18px;
+    padding: 18px 14px 22px;
+  }
+
+  .digital-confirmation .signature-wrap {
+    height: 165px;
+  }
+
+  .document-form .exact-submit {
+    padding: 22px 14px 26px;
+  }
+}
+
 @media print {
   @page {
     size: A4;

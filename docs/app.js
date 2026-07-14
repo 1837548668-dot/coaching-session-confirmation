@@ -25,15 +25,19 @@
   document.querySelectorAll("[data-brand]").forEach((element) => {
     element.textContent = config.brandName;
   });
-  document.querySelector("#currentYear").textContent = new Date().getFullYear();
+  const currentYear = document.querySelector("#currentYear");
+  if (currentYear) currentYear.textContent = new Date().getFullYear();
   document.title = `${config.brandName} · 客户辅导确认函`;
 
   const sessionInput = form.elements.sessionAt;
-  const now = new Date();
-  now.setHours(now.getHours() + 1);
-  now.setSeconds(0, 0);
-  sessionInput.min = toLocalDateTime(new Date());
-  sessionInput.value = toLocalDateTime(now);
+  const deliveryStart = form.elements.deliveryStart;
+  const deliveryEnd = form.elements.deliveryEnd;
+  const syncDeliveryTime = () => {
+    sessionInput.value = `${deliveryStart.value}T09:00`;
+  };
+  deliveryStart.addEventListener("change", syncDeliveryTime);
+  deliveryEnd.addEventListener("change", syncDeliveryTime);
+  syncDeliveryTime();
 
   form.querySelectorAll("textarea[maxlength]").forEach((textarea) => {
     const counter = document.querySelector(`[data-for="${textarea.name}"]`);
@@ -228,6 +232,12 @@
     }
 
     setSubmitting(true);
+    form.elements.coreIssue.value = [
+      `身份证号：${form.elements.idNumber.value.trim()}`,
+      `上课地点：${form.elements.classLocation.value.trim()}`,
+      `交付时间：${deliveryStart.value} 至 ${deliveryEnd.value}`,
+      "课程内容：课程9大商业核心主题",
+    ].join("；");
     const formData = new FormData(form);
     const submittedAt = new Date().toISOString();
     const record = {

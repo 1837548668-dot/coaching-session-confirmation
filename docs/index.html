@@ -17,20 +17,6 @@
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="./" aria-label="返回确认单首页">
-        <img class="brand-logo" src="./assets/ai-planet-logo.jpg" alt="AI星球 Logo">
-        <span>
-          <strong data-brand>AI星球</strong>
-          <small>AI PLANET · 客户服务中心</small>
-        </span>
-      </a>
-      <div class="secure-label">
-        <span class="secure-dot"></span>
-        HTTPS 安全页面
-      </div>
-    </header>
-
     <main class="document-page">
       <form id="briefForm" class="form-shell document-form">
         <input
@@ -41,110 +27,110 @@
           autocomplete="off"
           aria-hidden="true"
         >
-        <header class="document-head">
-          <img src="./assets/ai-planet-logo.jpg" alt="AI星球 Logo">
-          <div class="document-brand">
-            <strong data-brand>AI星球</strong>
-            <small>AI PLANET · CLIENT COACHING SERVICE</small>
-          </div>
-          <div class="document-title">
-            <span></span>
-            <h1>《客户辅导确认函》</h1>
-            <span></span>
-          </div>
-          <p>请客户本人于辅导开始前如实填写，并在阅读确认后完成电子手写签名。</p>
+        <input name="sessionAt" type="hidden">
+        <input name="sessionMode" type="hidden" value="线下面谈">
+        <input name="coreIssue" type="hidden" value="课程9大商业核心主题">
+
+        <header class="document-head exact-head">
+          <h1>《客户辅导确认函》交付确认书</h1>
         </header>
 
-        <section class="document-grid" aria-label="客户与辅导基本信息">
-          <label class="document-cell half">
-            <span>姓名 <b>*</b></span>
+        <section class="exact-grid" aria-label="客户与课程基本信息">
+          <label class="exact-cell">
+            <span>姓名</span>
             <input
               name="clientName"
               type="text"
               autocomplete="name"
               maxlength="30"
-              placeholder="请输入真实姓名"
+              placeholder="请填写"
               required
             >
           </label>
-          <label class="document-cell half">
-            <span>电话 / 微信 <b>*</b></span>
+          <label class="exact-cell">
+            <span>电话号码</span>
             <input
               name="contact"
               type="text"
               autocomplete="tel"
               maxlength="50"
-              placeholder="请输入联系方式"
+              placeholder="请填写"
               required
             >
           </label>
-          <label class="document-cell half">
-            <span>辅导时间 <b>*</b></span>
-            <input name="sessionAt" type="datetime-local" required>
-          </label>
-          <label class="document-cell half">
-            <span>辅导方式 <b>*</b></span>
-            <select name="sessionMode" required>
-              <option value="">请选择</option>
-              <option>线上视频</option>
-              <option>线下面谈</option>
-              <option>电话沟通</option>
-              <option>其他方式</option>
-            </select>
-          </label>
-        </section>
-
-        <section class="document-intro">
-          <p>
-            本次客户辅导由 <strong data-brand>AI星球</strong> 提供专业顾问服务。为帮助顾问提前了解客户现状、
-            聚焦关键问题并提高本次辅导效率，请您填写以下内容。本确认函将作为本次辅导的服务记录与双方沟通凭据。
-          </p>
-        </section>
-
-        <section class="document-section focus-section">
-          <h2>本次辅导重点</h2>
-          <label class="document-question">
-            <strong>本次最希望解决的一个核心问题是什么？ <b>*</b></strong>
-            <textarea
-              name="coreIssue"
-              rows="7"
-              maxlength="800"
-              placeholder="请尽量描述具体场景、当前卡点，以及它对您的影响……"
+          <label class="exact-cell id-cell">
+            <span>身份证号</span>
+            <input
+              name="idNumber"
+              type="text"
+              inputmode="text"
+              maxlength="30"
+              placeholder="请填写"
               required
-            ></textarea>
-            <small class="counter" data-for="coreIssue">0 / 800</small>
+            >
           </label>
-        </section>
-
-        <section class="document-section agreement-section">
-          <h2>特别约定（必读）</h2>
-          <ol>
-            <li>本确认函用于记录本次辅导的准备信息、客户诉求与双方沟通依据，不替代双方另行签署的正式服务合同。</li>
-            <li>顾问将依据客户填写的信息进行针对性准备并提供专业建议；具体执行与经营结果受多种因素影响，不构成结果承诺。</li>
-            <li>客户提交电子手写签名，即表示已阅读、理解并同意本确认函全部内容。</li>
-          </ol>
-
-          <div class="confirmation-boxes">
-            <label class="check-row">
-              <input name="truthConfirmed" type="checkbox" required>
-              <span>
-                我确认以上内容由本人填写，信息真实、完整，并同意其仅用于本次辅导准备、服务记录与后续复盘。<b>*</b>
-              </span>
-            </label>
-
-            <label class="check-row">
-              <input name="serviceConfirmed" type="checkbox" required>
-              <span>
-                我已阅读上述说明，自愿提交本确认函，并认可电子手写签名作为本人确认本次内容的凭据。<b>*</b>
-              </span>
-            </label>
+          <label class="exact-cell location-cell">
+            <span>上课地点</span>
+            <input
+              name="classLocation"
+              type="text"
+              maxlength="80"
+              value="上海沪华名都酒店"
+              required
+            >
+          </label>
+          <div class="exact-time-row">
+            <span>交付时间</span>
+            <div class="date-range">
+              <input name="deliveryStart" type="date" value="2026-04-26" required>
+              <em>—</em>
+              <input name="deliveryEnd" type="date" value="2026-04-27" required>
+            </div>
           </div>
         </section>
 
-        <section class="document-section signature-section">
+        <section class="exact-intro">
+          <p>
+            本次课程交付为轩辕（上海）教育科技有限公司（甲方）和<span class="inline-blank"></span>（乙方姓名）合作服务内容：课程仅限168000/268000元私董会成员参加，根据课程协议要求，为了保护双方的合法权益，如约完成课程的交付内容，甲方以书面形式告知本课程的内容明细及注意事项：
+          </p>
+        </section>
+
+        <section class="exact-topics">
+          <h2>课程 9 大商业核心主题：</h2>
+          <ol>
+            <li>如何精准看懂商业周期，把握时代风口与财富机遇？</li>
+            <li>如何锤炼强大心理素质，在商业竞争中从容破局？</li>
+            <li>如何打造世界级营销体系，实现品牌与业绩双爆发？</li>
+            <li>如何搭建顶尖商业组织，筑牢企业发展根基？</li>
+            <li>如何做好科学目标管理，让每一步行动都指向成功？</li>
+            <li>如何打造疯狂粉丝社群，沉淀高粘性客户资产？</li>
+            <li>如何实现企业自动化运营，摆脱事务性缠身？</li>
+            <li>如何搭建多元被动收入管道，实现财富自由？</li>
+            <li>如何做好全球资产配置，守住并放大财富？</li>
+          </ol>
+        </section>
+
+        <section class="exact-agreement">
+          <h2>特别约定（必读）</h2>
+          <ol>
+            <li>退款说明：本课程为线下知识交付服务，一经报名确认，费用不予退款；课程结束时，视为服务已完成，后续可以申请复训，仅需承担相应食宿场地费等。</li>
+            <li>知识产权：课程所有内容（课件、话术、工具、音视频等）归甲方所有，禁止录音、录像、复制、传播、商用，违者追究法律责任。</li>
+            <li>乙方签字即确认已充分知悉并同意以上全部条款。</li>
+          </ol>
+        </section>
+
+        <section class="digital-confirmation">
+          <label class="check-row">
+            <input name="truthConfirmed" type="checkbox" required>
+            <span>我确认以上填写信息真实、完整。<b>*</b></span>
+          </label>
+          <label class="check-row">
+            <input name="serviceConfirmed" type="checkbox" required>
+            <span>我已充分知悉并同意确认书全部条款。<b>*</b></span>
+          </label>
           <div class="signature-field">
             <div class="signature-top">
-              <span>客户本人手写签名 <b>*</b></span>
+              <span>乙方签字（电子手写）<b>*</b></span>
               <div>
                 <button id="undoSignature" type="button">撤销</button>
                 <button id="clearSignature" type="button">清空</button>
@@ -162,24 +148,17 @@
           </div>
         </section>
 
-        <div class="submit-area">
+        <div class="submit-area exact-submit">
           <button id="submitButton" class="primary-button" type="submit">
             <span>确认无误，签名并提交</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </button>
-          <p>提交后将生成唯一凭证编号及校验码，请保存凭证并发送给您的服务顾问完成双方留档。</p>
+          <p>提交后将生成唯一凭证编号及校验码。</p>
         </div>
       </form>
     </main>
-
-    <footer>
-      <p>© <span id="currentYear"></span> <span data-brand>AI星球</span></p>
-      <div>
-        <span>专业 · 真诚 · 长期主义</span>
-      </div>
-    </footer>
 
     <div id="successModal" class="modal" hidden>
       <div class="modal-backdrop"></div>
