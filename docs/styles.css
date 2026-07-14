@@ -1515,6 +1515,25 @@ body {
   line-height: 1.48;
 }
 
+.freeform-content,
+.freeform-agreement {
+  color: #383838;
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  white-space: pre-wrap;
+}
+
+.freeform-content {
+  padding: 0 14px;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.freeform-agreement {
+  padding: 0 22px;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
 .exact-agreement {
   min-height: 340px;
   padding: 48px 9px 34px;
@@ -1652,6 +1671,18 @@ footer,
     padding-left: 21px;
     font-size: 12px;
     line-height: 1.55;
+  }
+
+  .freeform-content {
+    padding: 0 9px;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .freeform-agreement {
+    padding: 0 12px;
+    font-size: 12px;
+    line-height: 1.75;
   }
 
   .exact-agreement {

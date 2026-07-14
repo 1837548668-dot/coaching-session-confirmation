@@ -1224,6 +1224,10 @@ tbody tr:hover {
   font-weight: 600;
 }
 
+.settings-card > label + label {
+  margin-top: 18px;
+}
+
 .settings-card input,
 .settings-card textarea {
   width: 100%;

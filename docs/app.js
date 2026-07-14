@@ -63,13 +63,9 @@
       if (!settings) return;
       document.querySelector("#formIntroText").textContent = settings.introText;
       document.querySelector("#formTopicsTitle").textContent = settings.topicsTitle;
-      document.querySelector("#formTopicsList").replaceChildren(
-        ...settings.topics.map((topic) => {
-          const item = document.createElement("li");
-          item.textContent = topic;
-          return item;
-        }),
-      );
+      document.querySelector("#formContentText").textContent = settings.contentText;
+      document.querySelector("#formAgreementTitle").textContent = settings.agreementTitle;
+      document.querySelector("#formAgreementText").textContent = settings.agreementText;
     } catch {
       // 网络异常时继续显示页面内置的默认内容。
     }
@@ -254,10 +250,10 @@
     }
 
     setSubmitting(true);
-    const currentTopics = Array.from(document.querySelectorAll("#formTopicsList li"), (item) =>
-      item.textContent.trim(),
-    );
-    form.elements.coreIssue.value = `辅导内容：${currentTopics.join("；")}`;
+    form.elements.coreIssue.value = document
+      .querySelector("#formContentText")
+      .textContent.trim()
+      .slice(0, 800);
     const formData = new FormData(form);
     const submittedAt = new Date().toISOString();
     const record = {

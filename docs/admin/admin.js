@@ -175,7 +175,9 @@
       const settings = result.settings;
       document.querySelector("#introText").value = settings.introText;
       document.querySelector("#topicsTitle").value = settings.topicsTitle;
-      renderTopicFields(settings.topics);
+      document.querySelector("#contentText").value = settings.contentText;
+      document.querySelector("#agreementTitle").value = settings.agreementTitle;
+      document.querySelector("#agreementText").value = settings.agreementText;
       document.querySelector("#settingsUpdatedAt").textContent = settings.updatedAt
         ? `上次保存：${formatDateTime(new Date(settings.updatedAt).toISOString())}`
         : "当前为默认内容";
@@ -189,25 +191,6 @@
       saveSettingsButton.disabled = false;
       saveSettingsButton.textContent = "保存并更新客户页";
     }
-  }
-
-  function renderTopicFields(topics) {
-    const container = document.querySelector("#topicFields");
-    container.replaceChildren(
-      ...topics.map((topic, index) => {
-        const label = document.createElement("label");
-        const number = document.createElement("span");
-        number.textContent = `第 ${index + 1} 条`;
-        const input = document.createElement("textarea");
-        input.rows = 2;
-        input.maxLength = 240;
-        input.required = true;
-        input.value = topic;
-        input.dataset.topic = String(index);
-        label.append(number, input);
-        return label;
-      }),
-    );
   }
 
   async function saveFormSettings(event) {
@@ -224,7 +207,9 @@
         body: JSON.stringify({
           introText: document.querySelector("#introText").value,
           topicsTitle: document.querySelector("#topicsTitle").value,
-          topics: Array.from(document.querySelectorAll("[data-topic]"), (input) => input.value),
+          contentText: document.querySelector("#contentText").value,
+          agreementTitle: document.querySelector("#agreementTitle").value,
+          agreementText: document.querySelector("#agreementText").value,
         }),
       });
       const result = await response.json();

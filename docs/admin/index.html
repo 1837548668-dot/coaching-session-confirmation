@@ -228,14 +228,47 @@
                 <span>02</span>
                 <div>
                   <h2>本次辅导内容</h2>
-                  <p>标题和9条内容均可随时修改</p>
+                  <p>使用自由文本格式，想写多少内容都可以</p>
                 </div>
               </div>
               <label>
-                <span>主题标题</span>
+                <span>栏目标题</span>
                 <input id="topicsTitle" type="text" maxlength="100" required>
               </label>
-              <div id="topicFields" class="topic-fields"></div>
+              <label>
+                <span>辅导内容</span>
+                <textarea
+                  id="contentText"
+                  rows="12"
+                  maxlength="6000"
+                  placeholder="可以自由填写任意内容，不限条数；换行后客户页会按原样显示。"
+                  required
+                ></textarea>
+              </label>
+            </section>
+
+            <section class="settings-card">
+              <div class="settings-card-head">
+                <span>03</span>
+                <div>
+                  <h2>特别约定</h2>
+                  <p>标题和全部条款内容均可自由修改</p>
+                </div>
+              </div>
+              <label>
+                <span>特别约定标题</span>
+                <input id="agreementTitle" type="text" maxlength="100" required>
+              </label>
+              <label>
+                <span>特别约定内容</span>
+                <textarea
+                  id="agreementText"
+                  rows="10"
+                  maxlength="6000"
+                  placeholder="可以自由填写、换行和增减条款。"
+                  required
+                ></textarea>
+              </label>
             </section>
 
             <p id="settingsError" class="form-error" role="alert"></p>
