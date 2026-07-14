@@ -5,7 +5,7 @@ const ADMIN_STATUSES = new Set(["new", "contacted", "scheduled", "completed", "a
 const DEFAULT_FORM_SETTINGS = {
   introText:
     "本次课程交付为轩辕（上海）教育科技有限公司（甲方）和________（乙方姓名）合作服务内容：课程仅限168000/268000元私董会成员参加，根据课程协议要求，为了保护双方的合法权益，如约完成课程的交付内容，甲方以书面形式告知本课程的内容明细及注意事项：",
-  topicsTitle: "课程 9 大商业核心主题：",
+  topicsTitle: "本次辅导内容",
   topics: [
     "如何精准看懂商业周期，把握时代风口与财富机遇？",
     "如何锤炼强大心理素质，在商业竞争中从容破局？",

@@ -1,4 +1,4 @@
-const CACHE_NAME = "ai-planet-coaching-confirmation-v5";
+const CACHE_NAME = "ai-planet-coaching-confirmation-v6";
 const ASSETS = [
   "./",
   "./index.html",
